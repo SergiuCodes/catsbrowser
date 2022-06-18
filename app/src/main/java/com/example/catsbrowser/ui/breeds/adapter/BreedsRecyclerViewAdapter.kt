@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catsbrowser.domain.model.Breed
+import timber.log.Timber
 
 class BreedsRecyclerViewAdapter(private val nContext: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -16,7 +17,7 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
     fun submitBreedsList(nList: List<Breed>) {
         mBreedsList = nList
         notifyDataSetChanged()
-        Log.d("testadapter", "submitted breed list adapter size: ${mBreedsList.size}")
+        Timber.tag("testadapter").d("submitted breed list adapter size: " + mBreedsList.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,10 +25,11 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        Timber.tag("TESTADAPTER").d("onBindViewHolder called")
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        Timber.tag("TESTADAPTER").d("getItemCount called" + mBreedsList.size)
+        return mBreedsList.size
     }
 }
