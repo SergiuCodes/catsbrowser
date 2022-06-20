@@ -2,7 +2,8 @@ package com.example.catsbrowser.data.repository
 
 import android.util.Log
 import com.example.catsbrowser.data.network.client.RetrofitClient
-import com.example.catsbrowser.data.network.responsetest.BreedResponseTest
+import com.example.catsbrowser.data.network.response.ApiResponseItem
+import com.example.catsbrowser.data.network.response.BreedResponse
 import com.example.catsbrowser.domain.model.Breed
 import com.example.catsbrowser.domain.model.BreedViewModel
 import com.example.catsbrowser.ui.ApiUiBreedMapper
@@ -10,7 +11,7 @@ import kotlinx.coroutines.*
 
 class BreedRepository(private val mViewModel: BreedViewModel) {
 
-    suspend fun getBreedsResponse(): BreedResponseTest {
+    suspend fun getBreedsResponse(): ApiResponseItem {
         return RetrofitClient.getInstance().getInterface().getBreedsResponse()
     }
 
@@ -23,7 +24,7 @@ class BreedRepository(private val mViewModel: BreedViewModel) {
             withContext(Dispatchers.IO){
 
                 val mappedResponse: List<Breed>
-                val response: BreedResponseTest = getBreedsResponse()
+                val response: ApiResponseItem = getBreedsResponse()
 
                 mappedResponse = ApiUiBreedMapper().mapListBreeds(response)
 
