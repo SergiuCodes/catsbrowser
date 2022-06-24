@@ -8,10 +8,11 @@ import com.example.catsbrowser.domain.model.Breed
 import com.example.catsbrowser.domain.model.BreedViewModel
 import com.example.catsbrowser.ui.ApiUiBreedMapper
 import kotlinx.coroutines.*
+import retrofit2.Call
 
 class BreedRepository(private val mViewModel: BreedViewModel) {
 
-    suspend fun getBreedsResponse(): ApiResponseItem {
+    suspend fun getBreedsResponse(): Call<List<BreedResponse>> {
         return RetrofitClient.getInstance().getInterface().getBreedsResponse()
     }
 
@@ -24,12 +25,12 @@ class BreedRepository(private val mViewModel: BreedViewModel) {
             withContext(Dispatchers.IO){
 
                 val mappedResponse: List<Breed>
-                val response: ApiResponseItem = getBreedsResponse()
+                val response: List<BreedResponse> = getBreedsResponse()
 
-                mappedResponse = ApiUiBreedMapper().mapListBreeds(response)
-
-                Log.d("TEST"," testing repository" + mappedResponse.size)
-                successGetBreeds(mappedResponse)
+//                mappedResponse = ApiUiBreedMapper().mapListBreeds(response)
+//
+//                Log.d("TEST"," testing repository" + mappedResponse.size)
+//                successGetBreeds(mappedResponse)
             }
         }
     }
