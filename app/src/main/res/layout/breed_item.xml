@@ -2,7 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -37,7 +37,8 @@
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toTopOf="@+id/view"
-            tools:setBreedImageFromUrl="@{breed.imageUrl}" />
+            bind:setBreedImageFromUrl="@{breed.imageUrl}"
+            bind:placeholder="@{@drawable/noimage}"/>
 
         <TextView
             android:id="@+id/breed_title_textView"

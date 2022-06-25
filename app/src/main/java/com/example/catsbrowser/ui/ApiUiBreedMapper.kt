@@ -8,27 +8,27 @@ class ApiUiBreedMapper {
 
     fun mapApiBreedToUi(breed: BreedResponse): Breed {
         return Breed(
-            imageUrl = breed.image.url,
+            imageUrl = breed.image?.url,
             name = breed.name
         )
     }
 
-    fun mapListBreeds(apiResponse: ApiResponseItem): ArrayList<Breed> {
+    fun mapListBreeds(apiResponse: List<BreedResponse>): ArrayList<Breed> {
 
         val mappedListBreeds: ArrayList<Breed> = ArrayList()
         val mappedBreed: Breed
 
-        for (item in apiResponse.breedResponses) {
+        apiResponse.forEach {
 
             val mappedBreed = Breed()
 
-            with(mappedBreed) {
-                name = item.name
-                imageUrl = item.image.url
-            }
+            it.name = mappedBreed.name
+            it.image?.url = mappedBreed.imageUrl
+
             mappedListBreeds.add(mappedBreed)
 
         }
         return mappedListBreeds
+
     }
 }

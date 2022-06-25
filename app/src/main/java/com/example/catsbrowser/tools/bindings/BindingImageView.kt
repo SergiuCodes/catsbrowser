@@ -1,15 +1,20 @@
 package com.example.catsbrowser.tools.bindings
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.catsbrowser.R
 
-@BindingAdapter(value =["setBreedImageFromUrl"])
-fun Context.loadImage (imageView: ImageView, url: String) {
-    Glide
-        .with(this)
-        .load(url)
-        .centerCrop()
-        .into(imageView)
+@BindingAdapter(value = ["setBreedImageFromUrl", "placeholder"])
+fun loadImage(imageView: ImageView, url: String?, placeHolder: Drawable) {
+    if (!url.isNullOrEmpty()) {
+
+        Glide.with(imageView.context).load(url).centerCrop()
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(imageView)
+    } else {
+        imageView.setImageDrawable(placeHolder)
+    }
 }
