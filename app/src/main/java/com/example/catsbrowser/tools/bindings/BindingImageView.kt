@@ -1,6 +1,5 @@
 package com.example.catsbrowser.tools.bindings
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -11,7 +10,7 @@ import com.example.catsbrowser.R
 fun loadImage(imageView: ImageView, url: String?, placeHolder: Drawable) {
     if (!url.isNullOrEmpty()) {
 
-        Glide.with(imageView.context).load(url).centerCrop()
+        Glide.with(imageView.context).load(url).centerInside()
             .placeholder(R.drawable.ic_launcher_background)
             .into(imageView)
     } else {

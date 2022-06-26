@@ -1,6 +1,7 @@
 package com.example.catsbrowser.tools.bindings
 
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catsbrowser.domain.model.Breed
@@ -15,7 +16,7 @@ fun setRecyclerViewBreedsList(
     if (nBreedsList != null) {
         val mUiBreedsListAdapter = BreedsRecyclerViewAdapter(nRecyclerView.context)
         nRecyclerView.apply {
-            this.layoutManager = LinearLayoutManager(this.context)
+            this.layoutManager = GridLayoutManager(this.context,2)
             this.adapter = mUiBreedsListAdapter
         }
         mUiBreedsListAdapter.submitBreedsList(nBreedsList)

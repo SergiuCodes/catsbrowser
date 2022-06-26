@@ -2,7 +2,8 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,45 +14,73 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
-        android:padding="5dp"
+        android:padding="3dp"
         app:layout_constraintWidth_default="wrap">
 
         <View
             android:id="@+id/view"
             android:layout_width="180dp"
-            android:layout_height="120dp"
+            android:layout_height="200dp"
             android:layout_margin="5dp"
-            android:background="#2D4757"
+            android:background="@drawable/rounded_rectangle_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/breed_thumbnail_imageView"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/teal_200"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            bind:setBreedImageFromUrl="@{breed.imageUrl}"
-            bind:placeholder="@{@drawable/noimage}"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view">
+
+
+            <ImageView
+                android:id="@+id/breed_thumbnail_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/teal_200"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view"
+                bind:placeholder="@{@drawable/noimage}"
+                bind:setBreedImageFromUrl="@{breed.imageUrl}" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/breed_title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/arimo"
             android:text="@{breed.name}"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
+            android:textColor="@color/cat_title"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/details_button"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/breed_thumbnail_imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardview_image" />
 
+        <Button
+            android:id="@+id/details_button"
+            android:layout_width="85dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/details_button_bg"
+            android:gravity="center"
+            android:text="@string/button_title"
+            android:textColor="@color/details_button_text"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@+id/cardview_image"
+            app:layout_constraintStart_toStartOf="@+id/cardview_image"
+            app:layout_constraintTop_toBottomOf="@id/breed_title_textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.example.catsbrowser.ui
 
-import com.example.catsbrowser.data.network.response.ApiResponseItem
 import com.example.catsbrowser.data.network.response.BreedResponse
 import com.example.catsbrowser.domain.model.Breed
 
@@ -22,8 +21,8 @@ class ApiUiBreedMapper {
 
             val mappedBreed = Breed()
 
-            it.name = mappedBreed.name
-            it.image?.url = mappedBreed.imageUrl
+            mappedBreed.name = it.name
+            mappedBreed.imageUrl = it.image?.url
 
             mappedListBreeds.add(mappedBreed)
 
