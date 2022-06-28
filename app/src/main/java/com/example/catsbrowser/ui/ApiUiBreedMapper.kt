@@ -23,6 +23,7 @@ class ApiUiBreedMapper {
 
             mappedBreed.name = it.name
             mappedBreed.imageUrl = it.image?.url
+            mappedBreed.description = it.description
 
             mappedListBreeds.add(mappedBreed)
 

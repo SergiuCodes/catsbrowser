@@ -1,7 +1,8 @@
-package com.example.catsbrowser.ui.breeds.adapter
+package com.example.catsbrowser.ui.breeds.adapterbreeds
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,6 +16,11 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
 
     private var mBreedsList: List<Breed> = ArrayList()
     private lateinit var mRowBinding: ViewDataBinding
+    private lateinit var mOnDataClickListener: OnButtonClickListener
+
+    fun setOnButtonClickListener(listener: OnButtonClickListener){
+        mOnDataClickListener = listener
+    }
 
     fun submitBreedsList(nList: List<Breed>) {
         mBreedsList = nList
@@ -31,7 +37,7 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
             parent,
             false
         )
-        return BreedsListViewHolder(mRowBinding.root)
+        return BreedsListViewHolder(mRowBinding.root, mOnDataClickListener)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -39,10 +45,15 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
 
         val breedsList = mBreedsList[position]
         (holder as BreedsListViewHolder).bind(breedsList)
+
     }
 
     override fun getItemCount(): Int {
         Timber.tag("testadapter").d("getItemCount called%s", mBreedsList.size)
         return mBreedsList.size
+    }
+
+    interface OnButtonClickListener {
+        fun onDataClick(position: Int)
     }
 }
