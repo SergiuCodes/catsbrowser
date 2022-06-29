@@ -7,7 +7,7 @@
         <variable
             name="breed"
             type="com.example.catsbrowser.domain.model.Breed" />
-        
+
         <variable
             name="viewModel"
             type="com.example.catsbrowser.domain.model.BreedViewModel" />
@@ -18,11 +18,12 @@
         android:layout_height="250dp"
         android:background="@drawable/rounded_rectangle_view">
 
+
         <TextView
             android:id="@+id/details_cat_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/arimo"
             android:text="@{breed.name}"
             android:textColor="@color/details_button_bg"
@@ -37,7 +38,7 @@
             android:id="@+id/details_cat_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:fontFamily="@font/voltaire"
             android:text="@{breed.description}"
             android:textColor="@color/cat_title"
