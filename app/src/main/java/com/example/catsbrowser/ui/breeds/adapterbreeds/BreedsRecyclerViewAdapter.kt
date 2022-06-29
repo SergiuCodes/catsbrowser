@@ -1,9 +1,11 @@
 package com.example.catsbrowser.ui.breeds.adapterbreeds
 
+import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -17,27 +19,28 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
     private var mBreedsList: List<Breed> = ArrayList()
     private lateinit var mRowBinding: ViewDataBinding
     private lateinit var mOnDataClickListener: OnButtonClickListener
+    private lateinit var mDialog: Dialog
 
-    fun setOnButtonClickListener(listener: OnButtonClickListener){
+    fun setOnButtonClickListener(listener: OnButtonClickListener) {
         mOnDataClickListener = listener
     }
 
     fun submitBreedsList(nList: List<Breed>) {
         mBreedsList = nList
         notifyDataSetChanged()
-        Timber.tag("testadapter").d("submitted breed list adapter size: %s", mBreedsList.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        Timber.tag("testadapter").d("onCreateViewHolder called")
 
         mRowBinding = DataBindingUtil.inflate(
             LayoutInflater.from(nContext),
             R.layout.breed_item,
             parent,
-            false
-        )
+            false)
+
         return BreedsListViewHolder(mRowBinding.root, mOnDataClickListener)
+
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
