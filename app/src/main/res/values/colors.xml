@@ -7,11 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cat_title">#C4FFF2EB</color>
-    <color name="card_bg_color">#5C5C5C</color>
-    <color name="main_fragment_bg">#ECE8E4</color>
-    <color name="details_button_bg">#4C86CD</color>
+    <color name="cat_title">#EFE19F</color>
+    <color name="card_bg_color">#1D2021</color>
+    <color name="main_fragment_bg">#C8C8C8</color>
+    <color name="details_button_bg">#64A497</color>
     <color name="details_button_text">#FFFFFF</color>
-    <color name="app_header_text">#2B2B2B</color>
+    <color name="app_header_text">#1D2021</color>
 
 </resources>

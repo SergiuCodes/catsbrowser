@@ -1,6 +1,7 @@
 package com.example.catsbrowser.tools.bindings
 
 import android.app.Dialog
+import android.text.method.ScrollingMovementMethod
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
@@ -24,6 +25,7 @@ fun setRecyclerViewBreedsList(
         }
         mUiBreedsListAdapter.setOnButtonClickListener(object : BreedsRecyclerViewAdapter.OnButtonClickListener {
             override fun onDataClick(position: Int) {
+
                 Toast.makeText(nRecyclerView.context, "Clicked on item no + $position", Toast.LENGTH_SHORT).show()
 
                 var mDialog = Dialog(nRecyclerView.context)
@@ -34,8 +36,11 @@ fun setRecyclerViewBreedsList(
                 var details_cat_text = mDialog.findViewById<TextView>(R.id.details_cat_text)
                 details_cat_text.text = nBreedsList[position].description
                 details_cat_title.text = nBreedsList[position].name
+
+                details_cat_text.movementMethod = ScrollingMovementMethod()
                 mDialog.show()
             }
+
 
         })
         mUiBreedsListAdapter.submitBreedsList(nBreedsList)
