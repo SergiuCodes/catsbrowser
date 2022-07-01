@@ -7,6 +7,7 @@ class ApiUiBreedMapper {
 
     fun mapApiBreedToUi(breed: BreedResponse): Breed {
         return Breed(
+
             imageUrl = breed.image?.url,
             name = breed.name
         )

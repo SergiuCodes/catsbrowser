@@ -28,11 +28,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             app:cardCornerRadius="5dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="@id/view"
@@ -42,9 +43,9 @@
 
             <ImageView
                 android:id="@+id/breed_thumbnail_imageView"
-                android:background="@drawable/imageview_shadow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/imageview_shadow"
                 app:layout_constraintEnd_toEndOf="@+id/view"
                 app:layout_constraintStart_toStartOf="@+id/view"
                 app:layout_constraintTop_toTopOf="@+id/view"
@@ -57,17 +58,43 @@
             android:id="@+id/breed_title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/button_style"
             android:fontFamily="@font/gabriela"
-            android:padding="7dp"
+            android:padding="6dp"
             android:text="@{breed.name}"
             android:textColor="@color/cat_title"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/cardview_image" />
+
+        <ImageView
+            android:id="@+id/star_empty_image"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/favorite_star_empty"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toBottomOf="@id/breed_title_textView"
+            app:tint="@color/star_color_empty" />
+
+        <ImageView
+            android:id="@+id/star_full_image"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/favorite_star_full"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toBottomOf="@id/breed_title_textView"
+            app:tint="@color/star_color" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
