@@ -21,7 +21,6 @@ class ApiUiBreedMapper {
         apiResponse.forEach {
 
             val mappedBreed = Breed()
-
             mappedBreed.name = it.name
             mappedBreed.imageUrl = it.image?.url
             mappedBreed.description = it.description

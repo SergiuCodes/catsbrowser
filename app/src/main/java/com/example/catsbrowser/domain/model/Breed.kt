@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "breeds")
 data class Breed(
-
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "name")
