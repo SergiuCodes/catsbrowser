@@ -32,8 +32,10 @@ fun setRecyclerViewBreedsList(
                 mDialog.setContentView(R.layout.details_fragment_dialog)
                 mDialog = Dialog(nRecyclerView.context)
                 mDialog.setContentView(R.layout.details_fragment_dialog)
-                var details_cat_title = mDialog.findViewById<TextView>(R.id.details_cat_title)
-                var details_cat_text = mDialog.findViewById<TextView>(R.id.details_cat_text)
+
+                val details_cat_title = mDialog.findViewById<TextView>(R.id.details_cat_title)
+                val details_cat_text = mDialog.findViewById<TextView>(R.id.details_cat_text)
+
                 details_cat_text.text = nBreedsList[position].description
                 details_cat_title.text = nBreedsList[position].name
 

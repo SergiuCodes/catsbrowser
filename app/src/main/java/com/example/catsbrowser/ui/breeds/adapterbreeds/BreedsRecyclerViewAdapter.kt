@@ -2,24 +2,33 @@ package com.example.catsbrowser.ui.breeds.adapterbreeds
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catsbrowser.R
+import com.example.catsbrowser.domain.database.BreedsDao
+import com.example.catsbrowser.domain.database.BreedsDatabase
 import com.example.catsbrowser.domain.model.Breed
 import timber.log.Timber
 
-class BreedsRecyclerViewAdapter(private val nContext: Context) :
+class BreedsRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var mBreedsList: List<Breed> = ArrayList()
     private lateinit var mRowBinding: ViewDataBinding
     private lateinit var mOnDataClickListener: OnButtonClickListener
-    private lateinit var mDialog: Dialog
+    private lateinit var breedsDao: BreedsDao
+    private var favoriteBreedsList: ArrayList<Breed> = ArrayList()
+
+
 
     fun setOnButtonClickListener(listener: OnButtonClickListener) {
         mOnDataClickListener = listener
@@ -33,26 +42,40 @@ class BreedsRecyclerViewAdapter(private val nContext: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         mRowBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(nContext),
+            LayoutInflater.from(context),
             R.layout.breed_item,
             parent,
-            false)
-
+            false
+        )
         return BreedsListViewHolder(mRowBinding.root, mOnDataClickListener)
-
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Timber.tag("testadapter").d("onBindViewHolder called")
 
+        val starImageButton: ImageButton = mRowBinding.root.findViewById(R.id.favorites_star_image)
+        val fullStarImage: Drawable = mRowBinding.root.resources.getDrawable(R.drawable.favorite_star_full)
+        val emptyStarImage: Drawable = mRowBinding.root.resources.getDrawable(R.drawable.favorite_star_empty)
         val breedsList = mBreedsList[position]
         (holder as BreedsListViewHolder).bind(breedsList)
+
+        starImageButton.setOnClickListener {
+            breedsDao = BreedsDatabase.getInstance(context).breedsDao()
+
+            if(starImageButton.drawable == emptyStarImage){
+                starImageButton.setImageDrawable(fullStarImage)
+                breedsDao.insert(mBreedsList[position])
+                favoriteBreedsList.add(mBreedsList[position])
+                Log.d("BreedsListAdapter","testing room insert" + favoriteBreedsList.toString())
+            } else {
+                starImageButton.setImageDrawable(emptyStarImage)
+                //TODO() - to add delete single item when clicked the star at that pos
+                Log.d("BreedsListAdapter","testing room insert second" + favoriteBreedsList.toString())
+            }
+        }
 
     }
 
     override fun getItemCount(): Int {
-        Timber.tag("testadapter").d("getItemCount called%s", mBreedsList.size)
         return mBreedsList.size
     }
 

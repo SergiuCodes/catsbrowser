@@ -4,18 +4,31 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.catsbrowser.domain.model.Breed
 
-@Database(entities = [Breed::class], version = 1)
+@Database(entities = [Breed::class], version = 3)
 abstract class BreedsDatabase : RoomDatabase() {
 
+    abstract fun breedsDao(): BreedsDao
+
     val dbName = "breeds_db"
+
+
 
     companion object {
         private var INSTANCE: BreedsDatabase? = null
 
         fun getInstance(context: Context): BreedsDatabase {
             synchronized(this) {
+
+                val MIGRATION_2_3 = object : Migration(2, 3) {
+                    override fun migrate(database: SupportSQLiteDatabase) {
+                        // do nothing because you are not altering any table
+                    }
+                }
+
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
@@ -23,7 +36,8 @@ abstract class BreedsDatabase : RoomDatabase() {
                         BreedsDatabase::class.java,
                         "breeds_database"
                     )
-                        .fallbackToDestructiveMigration()
+                        .addMigrations(MIGRATION_2_3)
+                        .allowMainThreadQueries()
                         .build()
                     INSTANCE = instance
                 }
