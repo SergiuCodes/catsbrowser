@@ -23,15 +23,15 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
     private lateinit var mRowBinding: ViewDataBinding
     private lateinit var mOnDataClickListener: OnButtonClickListener
     private lateinit var breedsDao: BreedsDao
-    private var favoriteBreedsList: ArrayList<Breed> = ArrayList()
-
-    fun setOnButtonClickListener(listener: OnButtonClickListener) {
-        mOnDataClickListener = listener
-    }
+//    private var favoriteBreedsList: ArrayList<Breed> = ArrayList()
 
     fun submitBreedsList(nList: List<Breed>) {
         mBreedsList = nList
         notifyDataSetChanged()
+    }
+
+    fun setOnButtonClickListener(listener: OnButtonClickListener) {
+        mOnDataClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -47,23 +47,32 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+        breedsDao = BreedsDatabase.getInstance(context).breedsDao()
         val starCheckBoxButton: CheckBox = mRowBinding.root.findViewById(R.id.favorites_checkbox)
-
+        starCheckBoxButton.isChecked = false
         val breedsList = mBreedsList[position]
+        val dbBreed = breedsDao.selectAllBreeds()[position]
+
+        if(dbBreed.isFavorite) {
+            starCheckBoxButton.isChecked
+        } else {
+            starCheckBoxButton.isChecked = false
+        }
+
         (holder as BreedsListViewHolder).bind(breedsList)
 
         starCheckBoxButton.setOnCheckedChangeListener { checkBox, isChecked ->
-            breedsDao = BreedsDatabase.getInstance(context).breedsDao()
 
             if (isChecked) {
-                breedsDao.insert(mBreedsList[position])
-                favoriteBreedsList.add(mBreedsList[position])
-                Log.d("BreedsRecViewAdapter", "testing room insert first" + favoriteBreedsList.toString())
-
+                dbBreed.isFavorite = true
+                breedsList.isFavorite = true
+                breedsDao.insert(dbBreed)
+//                favoriteBreedsList.add(breedsList)
             } else {
-                breedsDao.deleteBreed(mBreedsList[position])
-                favoriteBreedsList.remove(mBreedsList[position])
-                Log.d("BreedsRecViewAdapter", "testing room insert second" + favoriteBreedsList.toString())
+                dbBreed.isFavorite = false
+                breedsList.isFavorite = false
+                breedsDao.insert(dbBreed)
+//                favoriteBreedsList.remove(mBreedsList[position])
             }
         }
     }

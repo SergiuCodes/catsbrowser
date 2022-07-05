@@ -8,7 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.catsbrowser.domain.model.Breed
 
-@Database(entities = [Breed::class], version = 3)
+@Database(entities = [Breed::class], version = 9)
 abstract class BreedsDatabase : RoomDatabase() {
 
     abstract fun breedsDao(): BreedsDao
@@ -21,7 +21,7 @@ abstract class BreedsDatabase : RoomDatabase() {
         fun getInstance(context: Context): BreedsDatabase {
             synchronized(this) {
 
-                val MIGRATION_2_3 = object : Migration(2, 3) {
+                val MIGRATION_8_9 = object : Migration(8, 9) {
                     override fun migrate(database: SupportSQLiteDatabase) {
                         // do nothing because you are not altering any table
                     }
@@ -33,7 +33,7 @@ abstract class BreedsDatabase : RoomDatabase() {
                         BreedsDatabase::class.java,
                         dbName
                     )
-                        .addMigrations(MIGRATION_2_3)
+                        .addMigrations(MIGRATION_8_9)
                         .allowMainThreadQueries()
                         .build()
                     INSTANCE = instance

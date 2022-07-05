@@ -41,6 +41,7 @@ fun setRecyclerViewBreedsList(
                 mDialog.show()
             }
         })
+
         mUiBreedsListAdapter.submitBreedsList(nBreedsList)
     }
 }

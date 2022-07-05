@@ -13,5 +13,7 @@ data class Breed(
     @ColumnInfo(name = "imageUrl")
     var imageUrl: String? = "",
     @ColumnInfo(name = "description")
-    var description: String? = ""
+    var description: String? = "",
+    @ColumnInfo(name = "favorite")
+    var isFavorite: Boolean = false
 )
