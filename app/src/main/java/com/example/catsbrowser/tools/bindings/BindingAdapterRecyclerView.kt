@@ -26,8 +26,6 @@ fun setRecyclerViewBreedsList(
         mUiBreedsListAdapter.setOnButtonClickListener(object : BreedsRecyclerViewAdapter.OnButtonClickListener {
             override fun onDataClick(position: Int) {
 
-                Toast.makeText(nRecyclerView.context, "Clicked on item no + $position", Toast.LENGTH_SHORT).show()
-
                 var mDialog = Dialog(nRecyclerView.context)
                 mDialog.setContentView(R.layout.details_fragment_dialog)
                 mDialog = Dialog(nRecyclerView.context)
@@ -42,8 +40,6 @@ fun setRecyclerViewBreedsList(
                 details_cat_text.movementMethod = ScrollingMovementMethod()
                 mDialog.show()
             }
-
-
         })
         mUiBreedsListAdapter.submitBreedsList(nBreedsList)
     }

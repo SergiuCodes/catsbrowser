@@ -13,11 +13,9 @@ abstract class BreedsDatabase : RoomDatabase() {
 
     abstract fun breedsDao(): BreedsDao
 
-    val dbName = "breeds_db"
-
-
-
     companion object {
+        val dbName = "breeds_db"
+
         private var INSTANCE: BreedsDatabase? = null
 
         fun getInstance(context: Context): BreedsDatabase {
@@ -28,13 +26,12 @@ abstract class BreedsDatabase : RoomDatabase() {
                         // do nothing because you are not altering any table
                     }
                 }
-
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         BreedsDatabase::class.java,
-                        "breeds_database"
+                        dbName
                     )
                         .addMigrations(MIGRATION_2_3)
                         .allowMainThreadQueries()

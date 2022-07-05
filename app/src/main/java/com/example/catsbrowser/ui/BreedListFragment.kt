@@ -6,15 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.catsbrowser.MainActivity
 import com.example.catsbrowser.R
 import com.example.catsbrowser.databinding.FragmentBreedListBinding
-import com.example.catsbrowser.domain.database.BreedsDao
-import com.example.catsbrowser.domain.database.BreedsDatabase
-import com.example.catsbrowser.domain.model.Breed
 import com.example.catsbrowser.domain.model.BreedViewModel
 
 class BreedListFragment : Fragment() {
@@ -22,7 +17,6 @@ class BreedListFragment : Fragment() {
     private lateinit var mBinding: FragmentBreedListBinding
     private lateinit var mViewModel: BreedViewModel
     private lateinit var thisContext: Context
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,5 +35,4 @@ class BreedListFragment : Fragment() {
         mViewModel.getBreeds()
         return mBinding.root
     }
-
 }

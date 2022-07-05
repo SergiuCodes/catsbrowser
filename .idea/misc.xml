@@ -10,10 +10,12 @@
         <entry key="..\:/PROJECTS/catsbrowser_git/app/src/main/res/layout/fragment_breed_list.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/button_style.xml" value="0.1785" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/favorite_star_empty.xml" value="0.1095" />
+        <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/favorite_star_full.xml" value="0.22" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/favorite_star_full_background.xml" value="0.22" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/imageview_shadow.xml" value="0.1" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/rounded_rectangle_view.xml" value="0.1945" />
-        <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/layout/breed_item.xml" value="0.67" />
+        <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/drawable/selector_favorite_star.xml" value="0.22" />
+        <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/layout/breed_item.xml" value="0.4384508990318119" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/layout/details_dialog_fragment.xml" value="0.33" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/layout/details_fragment.xml" value="0.21920289855072464" />
         <entry key="..\:/Users/eNeruFPS/StudioProjects/catsbrowser/app/src/main/res/layout/details_fragment_dialog.xml" value="0.1762917933130699" />

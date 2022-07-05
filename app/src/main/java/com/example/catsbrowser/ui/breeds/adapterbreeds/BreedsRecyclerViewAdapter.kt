@@ -1,15 +1,12 @@
 package com.example.catsbrowser.ui.breeds.adapterbreeds
 
-import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +24,6 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
     private lateinit var mOnDataClickListener: OnButtonClickListener
     private lateinit var breedsDao: BreedsDao
     private var favoriteBreedsList: ArrayList<Breed> = ArrayList()
-
-
 
     fun setOnButtonClickListener(listener: OnButtonClickListener) {
         mOnDataClickListener = listener
@@ -52,27 +47,25 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val starImageButton: ImageButton = mRowBinding.root.findViewById(R.id.favorites_star_image)
-        val fullStarImage: Drawable = mRowBinding.root.resources.getDrawable(R.drawable.favorite_star_full)
-        val emptyStarImage: Drawable = mRowBinding.root.resources.getDrawable(R.drawable.favorite_star_empty)
+        val starCheckBoxButton: CheckBox = mRowBinding.root.findViewById(R.id.favorites_checkbox)
+
         val breedsList = mBreedsList[position]
         (holder as BreedsListViewHolder).bind(breedsList)
 
-        starImageButton.setOnClickListener {
+        starCheckBoxButton.setOnCheckedChangeListener { checkBox, isChecked ->
             breedsDao = BreedsDatabase.getInstance(context).breedsDao()
 
-            if(starImageButton.drawable == emptyStarImage){
-                starImageButton.setImageDrawable(fullStarImage)
+            if (isChecked) {
                 breedsDao.insert(mBreedsList[position])
                 favoriteBreedsList.add(mBreedsList[position])
-                Log.d("BreedsListAdapter","testing room insert" + favoriteBreedsList.toString())
+                Log.d("BreedsRecViewAdapter", "testing room insert first" + favoriteBreedsList.toString())
+
             } else {
-                starImageButton.setImageDrawable(emptyStarImage)
-                //TODO() - to add delete single item when clicked the star at that pos
-                Log.d("BreedsListAdapter","testing room insert second" + favoriteBreedsList.toString())
+                breedsDao.deleteBreed(mBreedsList[position])
+                favoriteBreedsList.remove(mBreedsList[position])
+                Log.d("BreedsRecViewAdapter", "testing room insert second" + favoriteBreedsList.toString())
             }
         }
-
     }
 
     override fun getItemCount(): Int {
