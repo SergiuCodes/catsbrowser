@@ -49,16 +49,16 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
 
         breedsDao = BreedsDatabase.getInstance(context).breedsDao()
         val starCheckBoxButton: CheckBox = mRowBinding.root.findViewById(R.id.favorites_checkbox)
-        val breedsList = mBreedsList[position]
+        val breedsItem = mBreedsList[position]
         val dbBreed = breedsDao.selectAllBreeds()[position]
 
-        (holder as BreedsListViewHolder).bind(breedsList)
+        (holder as BreedsListViewHolder).bind(breedsItem)
 
         if(dbBreed.isFavorite) {
-            breedsList.isFavorite
+            breedsItem.isFavorite
             starCheckBoxButton.isChecked
         } else {
-            breedsList.isFavorite = false
+            breedsItem.isFavorite = false
             starCheckBoxButton.isChecked = false
         }
 
@@ -66,12 +66,12 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
 
             if (isChecked) {
                 dbBreed.isFavorite = true
-                breedsList.isFavorite = true
+                breedsItem.isFavorite = true
                 breedsDao.insert(dbBreed)
 //                favoriteBreedsList.add(breedsList)
             } else {
                 dbBreed.isFavorite = false
-                breedsList.isFavorite = false
+                breedsItem.isFavorite = false
                 breedsDao.insert(dbBreed)
 //                favoriteBreedsList.remove(mBreedsList[position])
             }
