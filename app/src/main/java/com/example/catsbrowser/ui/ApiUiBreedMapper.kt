@@ -5,14 +5,6 @@ import com.example.catsbrowser.domain.model.Breed
 
 class ApiUiBreedMapper {
 
-    fun mapApiBreedToUi(breed: BreedResponse): Breed {
-        return Breed(
-
-            imageUrl = breed.image?.url,
-            name = breed.name
-        )
-    }
-
     fun mapListBreeds(apiResponse: List<BreedResponse>): ArrayList<Breed> {
 
         val mappedListBreeds: ArrayList<Breed> = ArrayList()
