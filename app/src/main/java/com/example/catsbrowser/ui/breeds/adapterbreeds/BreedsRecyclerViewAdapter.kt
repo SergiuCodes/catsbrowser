@@ -49,17 +49,18 @@ class BreedsRecyclerViewAdapter(private val context: Context) :
 
         breedsDao = BreedsDatabase.getInstance(context).breedsDao()
         val starCheckBoxButton: CheckBox = mRowBinding.root.findViewById(R.id.favorites_checkbox)
-        starCheckBoxButton.isChecked = false
         val breedsList = mBreedsList[position]
         val dbBreed = breedsDao.selectAllBreeds()[position]
 
+        (holder as BreedsListViewHolder).bind(breedsList)
+
         if(dbBreed.isFavorite) {
+            breedsList.isFavorite
             starCheckBoxButton.isChecked
         } else {
+            breedsList.isFavorite = false
             starCheckBoxButton.isChecked = false
         }
-
-        (holder as BreedsListViewHolder).bind(breedsList)
 
         starCheckBoxButton.setOnCheckedChangeListener { checkBox, isChecked ->
 
